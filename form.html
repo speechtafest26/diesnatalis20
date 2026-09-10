@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+</head>
+<body>
+
+ <h2>Form Pembelian</h2>
+
+<p id="jenis"></p>
+
+<input type="text" id="nama" placeholder="Masukkan Nama"><br><br>
+<input type="text" id="wa" placeholder="Masukkan No WA"><br><br>
+<input type="text" id="nimNip" placeholder="Masukkan NIM/NIP"><br><br>
+
+<button onclick="lanjut()">Lanjut Bayar</button>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const jenis = params.get("jenis");
+
+document.getElementById("jenis").innerText = "Tiket: " + jenis;
+
+function lanjut() {
+const nama = document.getElementById("nama").value;
+const wa = document.getElementById("wa").value;
+const nimNip = document.getElementById("nimNip").value;
+
+
+  if (!nama ||!wa ||!nimNip) {
+    alert("Isi dulu semua data!");
+    return;
+}
+  // simpan data sementara
+  localStorage.setItem("nama", nama);
+  localStorage.setItem("wa", wa);
+  localStorage.setItem("nimNip", nimNip);
+   
+//pindah ke halaman pembayaran
+  window.location.href = "payment.html?jenis=" + jenis;
+
+}
+</script>
+
+</body>
+</html>

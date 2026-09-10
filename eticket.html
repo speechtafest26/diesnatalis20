@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E-Ticket Speechtafest 2026</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background: rgb(51, 17, 34);      ;
+    }
+    .ticket {
+      width: 500px;
+      height: 300px;
+      background-image: url('background.jpg'); /* ganti dengan desain tiket */
+      background-size: cover;
+      padding: 20px;
+      color: #d2c098;
+      position: relative;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .ticket h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .ticket p {
+      margin: 4px 0;
+    }
+    .qr {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+<div class="ticket" id="ticket">
+  <h2>Panitia Speechtafest 2026</h2>
+  <p>30 September 2026 | 17.00-23.59</p>
+  <p>Balai Krida Husada, Jl. Letjen Sutoyo, Mojosongo, Kec. Jebres, Banjarsari, Kota Surakarta, Jawa Tengah</p>
+  <p>Nama: <span id="nama"></span></p>
+  <p>No WA: <span id="wa"></span></p>
+  <p>NIM/NIP : <span id="nimNip"></span></p>
+  <p>Tanggal Pembelian: <span id="tanggal"></span></p>
+  <p>Kode Tiket: <span id="kode"></span></p>
+  <p>Jenis Tiket: <span id="jenis"></span></p>
+  <img id="qr" class="qr" src="">
+</div>
+
+<script>
+const nama = localStorage.getItem("nama");
+const wa = localStorage.getItem("wa");
+const nimNip = localStorage.getItem("nimNip");
+const jenis = localStorage.getItem("jenis") || "Reguler";
+const tanggal = localStorage.getItem("tanggal") || ""; 
+const kode = localStorage.getItem("kode") || ""; 
+
+document.getElementById("nama").innerText = nama;
+document.getElementById("wa").innerText = wa;
+document.getElementById("nimNip").innerText = nimNip;
+document.getElementById("tanggal").innerText = tanggal;
+document.getElementById("kode").innerText = kode;
+document.getElementById("jenis").innerText = jenis;
+
+const qrData = `
+Panitia Speechtafest 2026
+Nama: ${nama}
+No WA: ${wa}
+NIMNIP ${nimNip} 
+Tanggal Pembelian: ${tanggal}
+Kode Tiket: ${kode}
+Jenis Tiket: ${jenis}
+`;
+
+// QR CODE
+const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=" + encodeURIComponent(qrData);
+
+document.getElementById("qr").src = qrUrl; 
+
+// localStorage.clear(); // Bisa hapus nanti setelah dikirim ke server
+</script>
+</body>
+</html>

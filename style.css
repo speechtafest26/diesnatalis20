@@ -1,0 +1,14 @@
+.tanpa-bootstrap {
+    border: none;
+    padding: 20px;
+    font-weight: 800;
+    background-color: navy;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+.tanpa-bootstrap:hover {
+    background-color: rgb(0, 0, 0);
+    color: navy;
+    transform: rotateY(2);
+    transition: all .3s;
+}
